@@ -17,6 +17,7 @@ public class MainActivity extends Activity {
 
     private View mContentView;
     private WebView webview;
+    private WebThingServer server;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,44 @@ public class MainActivity extends Activity {
      */
     public void reload(View view) {
         webview.reload();
+    }
+
+    /**
+     *  Start web thing server when app is resumed.
+     */
+    public void onResume() {
+        super.onResume();
+        try {
+            server = new WebThingServer();
+        } catch (IOException e) {
+            System.out.println("Failed to instantiate Web Thing Server");
+        }
+        try {
+            server.start();
+        } catch (IOException e) {
+            System.out.println("Failed to start Web Thing Server");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     *  Stop web thing server when app is paused.
+     */
+    public void onPause() {
+        super.onPause();
+        if(server != null) {
+            server.stop();
+        }
+    }
+
+    /**
+     *  Stop web thing server when app is destroyed.
+     */
+    public void onDestroy() {
+        super.onDestroy();
+        if(server != null) {
+            server.stop();
+        }
     }
 
     @Override

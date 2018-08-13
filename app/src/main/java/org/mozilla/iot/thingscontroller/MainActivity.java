@@ -54,6 +54,7 @@ public class MainActivity extends Activity {
                     .javaCrashReportingEnabled(true)
                     .crashReportingJobId(1024)
                     .consoleOutput(true)
+                    .displayDensityOverride(1)
                     .trackingProtectionCategories(GeckoSession.TrackingProtectionDelegate.CATEGORY_ALL);
 
             runtime = GeckoRuntime.create(this, runtimeSettingsBuilder.build());

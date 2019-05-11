@@ -18,6 +18,12 @@ android {
     }
 }
 
+repositories {
+    maven {
+        url 'https://index.taskcluster.net/v1/task/gecko.v2.mozilla-central.nightly.latest.mobile.android-api-16-opt/artifacts/public/android/maven'
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
@@ -27,4 +33,7 @@ dependencies {
     compileOnly 'com.google.android.things:androidthings:+'
     compile([group: 'org.nanohttpd', name: 'nanohttpd', version: '2.3.1'])
     compile([group: 'org.nanohttpd', name: 'nanohttpd-nanolets', version: '2.3.1'])
+    implementation 'org.mozilla:geckoview-nightly-armeabi-v7a:+'
+    implementation "com.android.support:appcompat-v7:26.1.0"
 }
+
